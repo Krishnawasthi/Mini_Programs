@@ -12,6 +12,14 @@ public final class DSAAdvancedProblemsSmokeTest {
         assert ArrayProductAndRotationProblems.medianOfSortedArrays(
                 new int[] {Integer.MAX_VALUE}, new int[] {Integer.MAX_VALUE}) == Integer.MAX_VALUE;
 
-        System.out.println("Advanced DSA smoke checks for questions 1-4 passed.");
+        assert StringWindowProblems.threeSumZero(new int[] {-1, 0, 1, 2, -1, -4}).size() == 2;
+        assert StringWindowProblems.longestPalindromicSubstring("babad").length() == 3;
+        assert StringWindowProblems.minimumWindowSubstring("ADOBECODEBANC", "ABC").equals("BANC");
+        int[] duplicates = {1, 1, 2, 2, 3};
+        int uniqueCount = StringWindowProblems.removeDuplicatesFromSortedArray(duplicates);
+        assert uniqueCount == 3;
+        assert Arrays.equals(Arrays.copyOf(duplicates, uniqueCount), new int[] {1, 2, 3});
+
+        System.out.println("Advanced DSA smoke checks for questions 1-8 passed.");
     }
 }
