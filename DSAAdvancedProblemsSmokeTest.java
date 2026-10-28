@@ -20,6 +20,16 @@ public final class DSAAdvancedProblemsSmokeTest {
         assert uniqueCount == 3;
         assert Arrays.equals(Arrays.copyOf(duplicates, uniqueCount), new int[] {1, 2, 3});
 
-        System.out.println("Advanced DSA smoke checks for questions 1-8 passed.");
+        assert Arrays.deepEquals(ArraySelectionProblems.mergeOverlappingIntervals(
+                new int[][] {{1, 3}, {2, 6}, {8, 10}, {15, 18}}),
+                new int[][] {{1, 6}, {8, 10}, {15, 18}});
+        assert ArraySelectionProblems.trappedRainWater(
+                new int[] {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}) == 6;
+        int[] colors = {2, 0, 2, 1, 1, 0};
+        ArraySelectionProblems.sortColors(colors);
+        assert Arrays.equals(colors, new int[] {0, 0, 1, 1, 2, 2});
+        assert ArraySelectionProblems.kthLargest(new int[] {3, 2, 1, 5, 6, 4}, 2) == 5;
+
+        System.out.println("Advanced DSA smoke checks for questions 1-12 passed.");
     }
 }
