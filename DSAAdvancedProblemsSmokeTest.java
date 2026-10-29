@@ -30,6 +30,43 @@ public final class DSAAdvancedProblemsSmokeTest {
         assert Arrays.equals(colors, new int[] {0, 0, 1, 1, 2, 2});
         assert ArraySelectionProblems.kthLargest(new int[] {3, 2, 1, 5, 6, 4}, 2) == 5;
 
-        System.out.println("Advanced DSA smoke checks for questions 1-12 passed.");
+        MultilevelListAndRandomCloneProblems.MultiLevelNode multiHead =
+                new MultilevelListAndRandomCloneProblems.MultiLevelNode(1);
+        MultilevelListAndRandomCloneProblems.MultiLevelNode multiTail =
+                new MultilevelListAndRandomCloneProblems.MultiLevelNode(2);
+        MultilevelListAndRandomCloneProblems.MultiLevelNode child =
+                new MultilevelListAndRandomCloneProblems.MultiLevelNode(3);
+        multiHead.next = multiTail;
+        multiTail.previous = multiHead;
+        multiHead.child = child;
+        MultilevelListAndRandomCloneProblems.flatten(multiHead);
+        assert multiHead.next == child && child.next == multiTail && multiTail.previous == child;
+        assert multiHead.child == null;
+
+        MultilevelListAndRandomCloneProblems.RandomNode randomFirst =
+                new MultilevelListAndRandomCloneProblems.RandomNode(1);
+        MultilevelListAndRandomCloneProblems.RandomNode randomSecond =
+                new MultilevelListAndRandomCloneProblems.RandomNode(2);
+        randomFirst.next = randomSecond;
+        randomFirst.random = randomSecond;
+        randomSecond.random = randomSecond;
+        MultilevelListAndRandomCloneProblems.RandomNode copied =
+                MultilevelListAndRandomCloneProblems.cloneRandomList(randomFirst);
+        assert copied != randomFirst && copied.next != randomSecond;
+        assert copied.random == copied.next && copied.next.random == copied.next;
+
+        TreeAndRecursionProblems.TreeNode tree = new TreeAndRecursionProblems.TreeNode(1);
+        tree.left = new TreeAndRecursionProblems.TreeNode(2);
+        tree.right = new TreeAndRecursionProblems.TreeNode(3);
+        tree.left.left = new TreeAndRecursionProblems.TreeNode(4);
+        tree.left.right = new TreeAndRecursionProblems.TreeNode(5);
+        String serialized = AdvancedTreeProblems.serialize(tree);
+        TreeAndRecursionProblems.TreeNode restored = AdvancedTreeProblems.deserialize(serialized);
+        assert AdvancedTreeProblems.serialize(restored).equals(serialized);
+        assert AdvancedTreeProblems.diameterInEdges(tree) == 3;
+        assert AdvancedTreeProblems.serialize(null).equals("#");
+        assert AdvancedTreeProblems.deserialize("#") == null;
+
+        System.out.println("Advanced DSA smoke checks for questions 1-16 passed.");
     }
 }
